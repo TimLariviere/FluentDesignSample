@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="DemoFluentDesign.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DemoFluentDesign"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">        
+        <ParallaxView Source="{x:Bind TheGridView}" HorizontalShift="200">
+            <Image Source="Images/Space_Needle002.jpg" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        </ParallaxView>
+
+        <ListView x:Name="TheGridView" ItemsSource="{Binding}"
+                  VerticalAlignment="Bottom" Height="200"
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                  ScrollViewer.HorizontalScrollMode="Enabled"
+                  ScrollViewer.VerticalScrollMode="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel Orientation="Horizontal"
+                                     ScrollViewer.HorizontalScrollMode="Enabled"
+                                     ScrollViewer.VerticalScrollMode="Disabled" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Width="200" Height="200">
+                        <Border.Background>
+                            <AcrylicBrush BackgroundSource="Backdrop" TintColor="#1da1f2" TintOpacity="0.3" FallbackColor="#1da1f2" />
+                        </Border.Background>
+
+                        <TextBlock Text="{Binding}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
